@@ -193,6 +193,7 @@ $EDITOR = if (Test-CommandExists nvim) { 'nvim' }
           elseif (Test-CommandExists sublime_text) { 'sublime_text' }
           else { 'notepad' }
 Set-Alias -Name vim -Value $EDITOR
+Set-Alias -Name np -Value notepad
 
 # Quick Access to Editing the Profile
 function Edit-Profile {
@@ -562,6 +563,7 @@ if (Get-Command zoxide -ErrorAction SilentlyContinue) {
 
 Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
+Set-Alias -Name omp -Value oh-my-posh
 
 # Help Function
 function Show-Help {
