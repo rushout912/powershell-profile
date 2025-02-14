@@ -72,12 +72,12 @@ $Winget = ((gci "C:\Program Files\WindowsApps" -Recurse -File | Where-Object { (
 # Check for Profile Updates
 function Update-Profile {
     try {
-        $url = "https://raw.githubusercontent.com/rushout912/powershell-profile/refs/heads/main/profile.ps1"
+        $url = "https://raw.githubusercontent.com/rushout912/powershell-profile/refs/heads/main/Microsoft.PowerShell_profile.ps1"
         $oldhash = Get-FileHash $PROFILE
-        Invoke-RestMethod $url -OutFile "$env:temp/profile.ps1"
-        $newhash = Get-FileHash "$env:temp/profile.ps1"
+        Invoke-RestMethod $url -OutFile "$env:temp/Microsoft.PowerShell_profile.ps1"
+        $newhash = Get-FileHash "$env:temp/Microsoft.PowerShell_profile.ps1"
         if ($newhash.Hash -ne $oldhash.Hash) {
-            Copy-Item -Path "$env:temp/profile.ps1" -Destination $PROFILE -Force
+            Copy-Item -Path "$env:temp/Microsoft.PowerShell_profile.ps1" -Destination $PROFILE -Force
             Write-Host "Profile has been updated. Please restart your shell to reflect changes" -ForegroundColor Magenta
         } else {
             Write-Host "Profile is up to date." -ForegroundColor Green
