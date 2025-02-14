@@ -57,6 +57,18 @@ if (Test-Path($ChocolateyProfile)) {
     Import-Module "$ChocolateyProfile"
 }
 
+# Check for Winget package updates
+function pacman {
+    # Get path for Winget executible
+$Winget = ((gci "C:\Program Files\WindowsApps" -Recurse -File | Where-Object { ($_.fullname -match 'C:\\Program Files\\WindowsApps\\Microsoft.DesktopAppInstaller_' -and $_.name -match 'winget.exe') } | sort fullname -descending | %{$_.FullName}) -Split [Environment]::NewLine)[0]
+
+# Update source
+& "$Winget" source update
+
+# Run the upgrade command
+& "$Winget" upgrade --all --silent --accept-source-agreements --accept-package-agreements --include-unknown
+}
+
 # Check for Profile Updates
 function Update-Profile {
     try {
